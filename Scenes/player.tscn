@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ujvxmiqqr0ei"]
+
+[ext_resource type="Script" uid="uid://caauyyhp1ksta" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://1dp1qskbrps4" path="res://Assets/character/player.png" id="1_v0iea"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 14.0
+height = 52.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(32, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(96, 0, 32, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3smsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(18, 39)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cvnsp")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cvnsp")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3smsa")
+animation = &"Idle"
+frame_progress = 0.338751
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-24, -3.5)
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

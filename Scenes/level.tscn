@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://daec40b4jw0bd"]
+
+[ext_resource type="PackedScene" uid="uid://c00ta4ulq5c3x" path="res://Scenes/background.tscn" id="1_tumq0"]
+[ext_resource type="PackedScene" uid="uid://ujvxmiqqr0ei" path="res://Scenes/player.tscn" id="2_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://cv52yf1odradq" path="res://Scenes/zombie.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://cutjebcbkb6vf" path="res://Scenes/charge_box.tscn" id="4_81xng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
+size = Vector2(1139.09, 13.0784)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+size = Vector2(9, 241)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
+size = Vector2(10, 237)
+
+[node name="Level" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_tumq0")]
+
+[node name="Elevator" type="StaticBody2D" parent="."]
+
+[node name="ElevatorCollisionDown" type="CollisionShape2D" parent="Elevator"]
+position = Vector2(580, 538)
+shape = SubResource("RectangleShape2D_k5f4k")
+one_way_collision_margin = 0.0
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Elevator"]
+position = Vector2(3, 423)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="Elevator"]
+position = Vector2(1150, 418)
+shape = SubResource("RectangleShape2D_81xng")
+
+[node name="ElevatorCollisionTop" type="CollisionShape2D" parent="Elevator"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(577, 288)
+rotation = 3.14159
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_k5f4k")
+one_way_collision = true
+one_way_collision_margin = 1.6
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Player" parent="Player" groups=["player"] instance=ExtResource("2_k5f4k")]
+top_level = true
+position = Vector2(504, 466)
+collision_layer = 7
+collision_mask = 7
+floor_constant_speed = true
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="Zombie" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
+position = Vector2(80, 29)
+
+[node name="Zombie4" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
+position = Vector2(908, 32)
+
+[node name="Zombie2" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
+position = Vector2(174, 44)
+
+[node name="Zombie3" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
+position = Vector2(981, 51)
+
+[node name="ChargeBoxes" type="Node2D" parent="."]
+
+[node name="ChargeBox1" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
+position = Vector2(600, 249)
+
+[node name="ChargeBox2" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
+position = Vector2(598, 495)

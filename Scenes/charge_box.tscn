@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cutjebcbkb6vf"]
+
+[ext_resource type="Texture2D" uid="uid://c5pfrytlbmyoa" path="res://Assets/ChargeBox/teleport.png" id="1_ma6kn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi6mb"]
+size = Vector2(31, 95)
+
+[node name="ChargeBox" type="Area2D"]
+
+[node name="ChargeBoxCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_xi6mb")
+
+[node name="ChargeBoxSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ma6kn")
