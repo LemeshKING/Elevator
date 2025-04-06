@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cutjebcbkb6vf"]
+[gd_scene load_steps=4 format=3 uid="uid://cutjebcbkb6vf"]
 
 [ext_resource type="Texture2D" uid="uid://c5pfrytlbmyoa" path="res://Assets/ChargeBox/teleport.png" id="1_ma6kn"]
+[ext_resource type="Script" uid="uid://dde0q3pws3syw" path="res://Scripts/charge_box.gd" id="1_xi6mb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi6mb"]
-size = Vector2(31, 95)
+size = Vector2(70, 125.5)
 
 [node name="ChargeBox" type="Area2D"]
+script = ExtResource("1_xi6mb")
 
 [node name="ChargeBoxCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_xi6mb")
 
 [node name="ChargeBoxSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_ma6kn")
+
+[node name="HealTime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="HealTime" to="." method="_on_heal_time_timeout"]

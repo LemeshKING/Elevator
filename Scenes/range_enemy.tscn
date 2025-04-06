@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://hqm53h6fbk18"]
+
+[ext_resource type="Texture2D" uid="uid://b471kmcoa2ogc" path="res://Assets/Wizard/Wizard.png" id="1_6dkk1"]
+[ext_resource type="Script" uid="uid://morbgkcd5cem" path="res://range_enemy.gd" id="1_pd800"]
+[ext_resource type="PackedScene" uid="uid://bp7lce53x8rt5" path="res://Scenes/project_tile.tscn" id="2_opf0r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pd800"]
+radius = 20.0
+height = 54.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opf0r"]
+atlas = ExtResource("1_6dkk1")
+region = Rect2(0, 0, 40, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3who"]
+atlas = ExtResource("1_6dkk1")
+region = Rect2(40, 0, 40, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk4vr"]
+atlas = ExtResource("1_6dkk1")
+region = Rect2(80, 0, 40, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0rtq"]
+atlas = ExtResource("1_6dkk1")
+region = Rect2(120, 0, 40, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv50a"]
+atlas = ExtResource("1_6dkk1")
+region = Rect2(160, 0, 40, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02o3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opf0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3who")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk4vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0rtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv50a")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="RangeEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_pd800")
+projectile_scene = ExtResource("2_opf0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pd800")
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+position = Vector2(20, -10)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_02o3c")
+animation = &"Idle"
+
+[node name="AttackTimer" type="Timer" parent="."]

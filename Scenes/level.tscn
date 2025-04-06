@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://daec40b4jw0bd"]
+[gd_scene load_steps=11 format=3 uid="uid://daec40b4jw0bd"]
 
+[ext_resource type="Script" uid="uid://r0hhj70dctwv" path="res://Scripts/level.gd" id="1_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://c00ta4ulq5c3x" path="res://Scenes/background.tscn" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://ujvxmiqqr0ei" path="res://Scenes/player.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://cv52yf1odradq" path="res://Scenes/zombie.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://hqm53h6fbk18" path="res://Scenes/range_enemy.tscn" id="4_0f350"]
 [ext_resource type="PackedScene" uid="uid://cutjebcbkb6vf" path="res://Scenes/charge_box.tscn" id="4_81xng"]
+[ext_resource type="Script" uid="uid://c0qkw8tvu0ln1" path="res://Scripts/hp_bar.gd" id="5_wqkje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
 size = Vector2(1139.09, 13.0784)
@@ -15,6 +18,9 @@ size = Vector2(9, 241)
 size = Vector2(10, 237)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_8c0lf")
+enemy_scene = ExtResource("3_6phgx")
+range_enemy_scene = ExtResource("4_0f350")
 
 [node name="Background" parent="." instance=ExtResource("1_tumq0")]
 
@@ -66,10 +72,32 @@ position = Vector2(174, 44)
 [node name="Zombie3" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
 position = Vector2(981, 51)
 
+[node name="RangeEnemy" parent="Mobs" groups=["Mobs"] instance=ExtResource("4_0f350")]
+position = Vector2(61, 471)
+
 [node name="ChargeBoxes" type="Node2D" parent="."]
 
 [node name="ChargeBox1" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
-position = Vector2(600, 249)
+position = Vector2(598, 245)
 
 [node name="ChargeBox2" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
 position = Vector2(598, 495)
+
+[node name="HPbarUI" type="CanvasLayer" parent="."]
+script = ExtResource("5_wqkje")
+
+[node name="HpBar" type="ProgressBar" parent="HPbarUI"]
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.931
+anchor_right = 0.275
+anchor_bottom = 0.978
+offset_left = 0.544
+offset_top = -0.288025
+offset_right = 0.199982
+offset_bottom = 0.255981
+value = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

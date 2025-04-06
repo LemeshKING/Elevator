@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp7lce53x8rt5"]
+
+[ext_resource type="Script" uid="uid://2ttqun4gnl63" path="res://Scripts/project_tile.gd" id="1_by1rn"]
+[ext_resource type="Texture2D" uid="uid://bcxog1ogoqohc" path="res://Assets/Wizard/FireBall.png" id="1_uky4a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_by1rn"]
+height = 22.0
+
+[node name="ProjectTile" type="Area2D"]
+script = ExtResource("1_by1rn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uky4a")
+
+[node name="ProjectTileCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_by1rn")
+
+[node name="LifeTime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

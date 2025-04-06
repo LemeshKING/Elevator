@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv52yf1odradq"]
+[gd_scene load_steps=11 format=3 uid="uid://cv52yf1odradq"]
 
 [ext_resource type="Texture2D" uid="uid://cesdxjc3bd47e" path="res://Assets/Zombie/enemy.png" id="1_h3kin"]
 [ext_resource type="Script" uid="uid://qshmxrcy8xtl" path="res://Scripts/zombie.gd" id="1_n70j1"]
@@ -50,6 +50,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n70j1"]
+size = Vector2(10, 44)
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
@@ -63,4 +66,14 @@ position = Vector2(0.5, -0.5)
 scale = Vector2(0.975, 1.02)
 sprite_frames = SubResource("SpriteFrames_xx3wb")
 animation = &"Idle"
-frame_progress = 0.446399
+frame_progress = 0.640899
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(24, -2)
+shape = SubResource("RectangleShape2D_n70j1")
+
+[node name="AttackCD" type="Timer" parent="."]
+
+[node name="ChargeAttack" type="Timer" parent="."]

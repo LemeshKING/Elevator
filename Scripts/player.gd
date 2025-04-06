@@ -1,6 +1,14 @@
 extends CharacterBody2D
 
-var attack_damage := 10
+signal health_updated(current_hp, max_hp)
+
+@export var max_health := 100
+var current_health := max_health:
+	set(value):
+		current_health = clamp(value, 0, max_health)
+		health_updated.emit(current_health, max_health)
+
+var attack_damage := 30
 var attack_cooldown := 0.5
 
 
@@ -17,6 +25,14 @@ func _ready():
 		$AttackArea.connect("body_entered", _on_attack_area_body_entered)
 	if not $AttackArea.is_connected("body_exited", _on_attack_area_body_exited):
 		$AttackArea.connect("body_exited", _on_attack_area_body_exited)
+	$Decay.wait_time = 1
+	$Decay.timeout.connect(takeDamageFromDecay)
+	$Decay.start()
+
+func takeDamageFromDecay():
+	takeDamage(1)
+	$Decay.start()
+
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and can_attack:
@@ -32,6 +48,16 @@ func perform_attack():
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
+func takeDamage(amount):
+	current_health -= amount
+	if(current_health >= max_health):
+		current_health = max_health
+	if(current_health <= 0):
+		die()
+
+func die():
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
@@ -46,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	if directionX:
 		velocity.x = directionX * SPEED
 		$AttackArea.scale.x = sign(directionX)
-		$AttackArea.position.x = abs(64) * sign(directionX)
+		$AttackArea.position.x = 64 * sign(directionX)
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
