@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxktfcmga8gfq"]
+
+[ext_resource type="Texture2D" uid="uid://bcxog1ogoqohc" path="res://Assets/Wizard/FireBall.png" id="1_lva6t"]
+[ext_resource type="Script" uid="uid://dnhoxrsvxtye7" path="res://Scenes/acid.gd" id="1_y8wqw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8wqw"]
+radius = 93.0
+height = 382.0
+
+[node name="Acid" type="Area2D"]
+script = ExtResource("1_y8wqw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y8wqw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(709, 742)
+scale = Vector2(1.15285, 0.672425)
+texture = ExtResource("1_lva6t")
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

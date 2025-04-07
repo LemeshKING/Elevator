@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5u7vxm4qq8lx"]
+
+[ext_resource type="Script" uid="uid://dsfq1fknwb3yy" path="res://Scripts/back_menu_button.gd" id="1_wfow7"]
+[ext_resource type="Script" uid="uid://crdg7t87gj7ee" path="res://Scripts/play_again_button.gd" id="2_1c3a1"]
+[ext_resource type="PackedScene" uid="uid://c00ta4ulq5c3x" path="res://Scenes/background.tscn" id="3_kdi6k"]
+
+[node name="WinMenu" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 739.0
+offset_top = 237.0
+offset_right = 1183.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 100
+text = "You won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackMenuButton" type="Button" parent="."]
+offset_left = 614.0
+offset_top = 631.0
+offset_right = 1285.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 100
+text = "Back to menu"
+script = ExtResource("1_wfow7")
+
+[node name="PlayAgainButton" type="Button" parent="."]
+offset_left = 613.0
+offset_top = 435.0
+offset_right = 1277.0
+offset_bottom = 582.0
+theme_override_font_sizes/font_size = 100
+text = "Play again"
+script = ExtResource("2_1c3a1")
+
+[node name="Background" parent="." instance=ExtResource("3_kdi6k")]
+
+[connection signal="pressed" from="BackMenuButton" to="BackMenuButton" method="_on_pressed"]
+[connection signal="pressed" from="PlayAgainButton" to="PlayAgainButton" method="_on_pressed"]

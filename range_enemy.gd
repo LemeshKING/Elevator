@@ -30,28 +30,36 @@ func _ready() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		target = players[0]
+	$AnimatedSprite2D.sprite_frames.set_animation_loop("Attack", false)
 
 func _physics_process(delta: float) -> void:
 	if target:
+		$AnimatedSprite2D.play("Attack")
 		var direction = (target.global_position - global_position).normalized()
 		if direction.x != 0:
-			$AnimatedSprite2D.flip_h = direction.x < 0
+			$AnimatedSprite2D.flip_h = direction.x > 0
+		await $AnimatedSprite2D.animation_finished
 		if global_position.distance_to(target.global_position) <= attack_range and can_attack:
+
 			shoot_at_target(direction)
 		
-	
+	velocity.x = 0
 
-	move_and_slide()
+	move_and_collide(velocity * delta)
 
 func shoot_at_target(direction: Vector2):
 	if not projectile_scene or not can_attack: 
 		return
+	
 	can_attack = false
 	$AttackTimer.start()
+	
 	var projectile = projectile_scene.instantiate()
 	projectile.direction = direction
 	projectile.speed = projectile_speed
-	projectile.position = $ShootingPoint.global_position
+	projectile.position =  $ShootingPoint.global_position
+	if direction.x > 0:
+		projectile.position.x += 60
 	projectile.rotation = direction.angle()
 	get_parent().add_child(projectile)
 	

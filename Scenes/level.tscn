@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://daec40b4jw0bd"]
+[gd_scene load_steps=13 format=3 uid="uid://daec40b4jw0bd"]
 
 [ext_resource type="Script" uid="uid://r0hhj70dctwv" path="res://Scripts/level.gd" id="1_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://c00ta4ulq5c3x" path="res://Scenes/background.tscn" id="1_tumq0"]
@@ -7,18 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://hqm53h6fbk18" path="res://Scenes/range_enemy.tscn" id="4_0f350"]
 [ext_resource type="PackedScene" uid="uid://cutjebcbkb6vf" path="res://Scenes/charge_box.tscn" id="4_81xng"]
 [ext_resource type="Script" uid="uid://c0qkw8tvu0ln1" path="res://Scripts/hp_bar.gd" id="5_wqkje"]
+[ext_resource type="PackedScene" uid="uid://dv1sd7yj04sf4" path="res://Scenes/mini_boss.tscn" id="6_754fn"]
+[ext_resource type="Texture2D" uid="uid://r06ms2r7r3pb" path="res://Assets/background/back.png" id="8_bvt00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
-size = Vector2(1139.09, 13.0784)
+size = Vector2(2094.39, 10.5354)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
-size = Vector2(9, 241)
+size = Vector2(16, 889)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
-size = Vector2(10, 237)
+size = Vector2(13, 883.75)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_8c0lf")
+mini_boss = ExtResource("6_754fn")
 enemy_scene = ExtResource("3_6phgx")
 range_enemy_scene = ExtResource("4_0f350")
 
@@ -27,22 +30,22 @@ range_enemy_scene = ExtResource("4_0f350")
 [node name="Elevator" type="StaticBody2D" parent="."]
 
 [node name="ElevatorCollisionDown" type="CollisionShape2D" parent="Elevator"]
-position = Vector2(580, 538)
+position = Vector2(1044, 1084)
 shape = SubResource("RectangleShape2D_k5f4k")
 one_way_collision_margin = 0.0
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Elevator"]
-position = Vector2(3, 423)
+position = Vector2(13, 640)
 shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="Elevator"]
-position = Vector2(1150, 418)
+position = Vector2(1943, 648)
 shape = SubResource("RectangleShape2D_81xng")
 
 [node name="ElevatorCollisionTop" type="CollisionShape2D" parent="Elevator"]
 light_mask = 7
 visibility_layer = 7
-position = Vector2(577, 288)
+position = Vector2(1046, 307)
 rotation = 3.14159
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_k5f4k")
@@ -53,51 +56,45 @@ one_way_collision_margin = 1.6
 
 [node name="Player" parent="Player" groups=["player"] instance=ExtResource("2_k5f4k")]
 top_level = true
-position = Vector2(504, 466)
+position = Vector2(1042, 546)
 collision_layer = 7
 collision_mask = 7
 floor_constant_speed = true
 
 [node name="Mobs" type="Node2D" parent="."]
 
-[node name="Zombie" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
-position = Vector2(80, 29)
-
-[node name="Zombie4" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
-position = Vector2(908, 32)
-
-[node name="Zombie2" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
-position = Vector2(174, 44)
-
-[node name="Zombie3" parent="Mobs" groups=["Mobs"] instance=ExtResource("3_6phgx")]
-position = Vector2(981, 51)
-
-[node name="RangeEnemy" parent="Mobs" groups=["Mobs"] instance=ExtResource("4_0f350")]
-position = Vector2(61, 471)
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(1048, 573)
+scale = Vector2(1.08125, 0.939815)
+texture = ExtResource("8_bvt00")
 
 [node name="ChargeBoxes" type="Node2D" parent="."]
+position = Vector2(-5, 5)
 
 [node name="ChargeBox1" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
-position = Vector2(598, 245)
+position = Vector2(1054, 360)
 
 [node name="ChargeBox2" parent="ChargeBoxes" instance=ExtResource("4_81xng")]
-position = Vector2(598, 495)
+position = Vector2(1053, 1003)
 
 [node name="HPbarUI" type="CanvasLayer" parent="."]
 script = ExtResource("5_wqkje")
 
 [node name="HpBar" type="ProgressBar" parent="HPbarUI"]
 anchors_preset = -1
-anchor_left = 0.003
-anchor_top = 0.931
-anchor_right = 0.275
-anchor_bottom = 0.978
-offset_left = 0.544
-offset_top = -0.288025
-offset_right = 0.199982
-offset_bottom = 0.255981
+anchor_left = 0.035
+anchor_top = 0.056
+anchor_right = 0.306
+anchor_bottom = 0.103
+offset_left = -0.32
+offset_top = -0.288002
+offset_right = 0.487976
+offset_bottom = 0.255997
 value = 100.0
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="mini_boss_time_spawn" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="mini_boss_time_spawn" to="." method="_on_mini_boss_time_spawn_timeout"]

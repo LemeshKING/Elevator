@@ -1,54 +1,114 @@
-[gd_scene load_steps=11 format=3 uid="uid://hqm53h6fbk18"]
+[gd_scene load_steps=29 format=3 uid="uid://hqm53h6fbk18"]
 
-[ext_resource type="Texture2D" uid="uid://b471kmcoa2ogc" path="res://Assets/Wizard/Wizard.png" id="1_6dkk1"]
-[ext_resource type="Script" uid="uid://morbgkcd5cem" path="res://range_enemy.gd" id="1_pd800"]
+[ext_resource type="Script" uid="uid://d2l4n3ij8jbyy" path="res://range_enemy.gd" id="1_pd800"]
 [ext_resource type="PackedScene" uid="uid://bp7lce53x8rt5" path="res://Scenes/project_tile.tscn" id="2_opf0r"]
+[ext_resource type="Texture2D" uid="uid://ccqvbhp4pl1o" path="res://Assets/Wizard/Scene1_000.png" id="3_6vxo0"]
+[ext_resource type="Texture2D" uid="uid://dpbpk0873wfil" path="res://Assets/Wizard/Scene1_001.png" id="4_ljd50"]
+[ext_resource type="Texture2D" uid="uid://deojjkeyq0u14" path="res://Assets/Wizard/Scene1_002.png" id="5_gqt00"]
+[ext_resource type="Texture2D" uid="uid://dvqjsda7mg3lg" path="res://Assets/Wizard/Scene1_003.png" id="6_qnsfq"]
+[ext_resource type="Texture2D" uid="uid://dw72jhjuxcfv8" path="res://Assets/Wizard/Scene1_004.png" id="7_vno3c"]
+[ext_resource type="Texture2D" uid="uid://cdat060rr7s64" path="res://Assets/Wizard/Scene1_005.png" id="8_knjpe"]
+[ext_resource type="Texture2D" uid="uid://e0ip2ussiorv" path="res://Assets/Wizard/Scene1_006.png" id="9_j5aoj"]
+[ext_resource type="Texture2D" uid="uid://bv4mnvolg81oc" path="res://Assets/Wizard/Scene1_007.png" id="10_nl516"]
+[ext_resource type="Texture2D" uid="uid://g8kt41qdva1d" path="res://Assets/Wizard/Scene1_008.png" id="11_prj2t"]
+[ext_resource type="Texture2D" uid="uid://cuv0fn5ysefrk" path="res://Assets/Wizard/Scene1_009.png" id="12_cyekv"]
+[ext_resource type="Texture2D" uid="uid://dsff142at1vog" path="res://Assets/Wizard/Scene1_010.png" id="13_tnsjy"]
+[ext_resource type="Texture2D" uid="uid://cfrg8g8rwnc8l" path="res://Assets/Wizard/Scene1_011.png" id="14_en5hg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pd800"]
-radius = 20.0
-height = 54.0
+radius = 73.0
+height = 188.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opf0r"]
-atlas = ExtResource("1_6dkk1")
-region = Rect2(0, 0, 40, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fb87"]
+atlas = ExtResource("3_6vxo0")
+region = Rect2(0, 0, 1280, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3who"]
-atlas = ExtResource("1_6dkk1")
-region = Rect2(40, 0, 40, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_iva0u"]
+atlas = ExtResource("4_ljd50")
+region = Rect2(0, 0, 1280, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rk4vr"]
-atlas = ExtResource("1_6dkk1")
-region = Rect2(80, 0, 40, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bkpr"]
+atlas = ExtResource("5_gqt00")
+region = Rect2(0, 0, 1280, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0rtq"]
-atlas = ExtResource("1_6dkk1")
-region = Rect2(120, 0, 40, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpp34"]
+atlas = ExtResource("6_qnsfq")
+region = Rect2(0, 0, 1280, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv50a"]
-atlas = ExtResource("1_6dkk1")
-region = Rect2(160, 0, 40, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d28b"]
+atlas = ExtResource("7_vno3c")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd22r"]
+atlas = ExtResource("8_knjpe")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huhct"]
+atlas = ExtResource("9_j5aoj")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shmkk"]
+atlas = ExtResource("10_nl516")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oewdn"]
+atlas = ExtResource("11_prj2t")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am5pv"]
+atlas = ExtResource("12_cyekv")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibeuo"]
+atlas = ExtResource("13_tnsjy")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fek8"]
+atlas = ExtResource("14_en5hg")
+region = Rect2(0, 0, 1280, 720)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02o3c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opf0r")
+"texture": SubResource("AtlasTexture_1fb87")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y3who")
+"texture": SubResource("AtlasTexture_iva0u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rk4vr")
+"texture": SubResource("AtlasTexture_6bkpr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u0rtq")
+"texture": SubResource("AtlasTexture_bpp34")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yv50a")
+"texture": SubResource("AtlasTexture_8d28b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd22r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huhct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shmkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oewdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am5pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibeuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fek8")
 }],
 "loop": true,
-"name": &"Idle",
-"speed": 5.0
+"name": &"Attack",
+"speed": 7.0
 }]
 
 [node name="RangeEnemy" type="CharacterBody2D"]
@@ -58,13 +118,17 @@ script = ExtResource("1_pd800")
 projectile_scene = ExtResource("2_opf0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pd800")
 
 [node name="ShootingPoint" type="Marker2D" parent="."]
-position = Vector2(20, -10)
+position = Vector2(-68, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.25, -3)
+scale = Vector2(0.280859, 0.291667)
 sprite_frames = SubResource("SpriteFrames_02o3c")
-animation = &"Idle"
+animation = &"Attack"
+frame_progress = 0.389698
 
 [node name="AttackTimer" type="Timer" parent="."]

@@ -7,18 +7,18 @@
 script = ExtResource("1_1rerr")
 
 [node name="PlayButton" type="Button" parent="."]
-offset_left = 375.0
-offset_top = 151.0
-offset_right = 803.0
-offset_bottom = 276.0
+offset_left = 794.0
+offset_top = 349.0
+offset_right = 1222.0
+offset_bottom = 474.0
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="."]
-offset_left = 376.0
-offset_top = 331.0
-offset_right = 804.0
-offset_bottom = 456.0
+offset_left = 796.0
+offset_top = 570.0
+offset_right = 1224.0
+offset_bottom = 695.0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 

@@ -1,19 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://cutjebcbkb6vf"]
 
-[ext_resource type="Texture2D" uid="uid://c5pfrytlbmyoa" path="res://Assets/ChargeBox/teleport.png" id="1_ma6kn"]
 [ext_resource type="Script" uid="uid://dde0q3pws3syw" path="res://Scripts/charge_box.gd" id="1_xi6mb"]
+[ext_resource type="Texture2D" uid="uid://dwh50ehaad7we" path="res://Assets/ChargeBox/плитка.png" id="2_xi6mb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi6mb"]
-size = Vector2(70, 125.5)
+size = Vector2(192, 134)
 
 [node name="ChargeBox" type="Area2D"]
 script = ExtResource("1_xi6mb")
 
 [node name="ChargeBoxCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 2)
 shape = SubResource("RectangleShape2D_xi6mb")
 
 [node name="ChargeBoxSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_ma6kn")
+position = Vector2(-5, 3)
+scale = Vector2(0.623958, 0.620924)
+texture = ExtResource("2_xi6mb")
 
 [node name="HealTime" type="Timer" parent="."]
 

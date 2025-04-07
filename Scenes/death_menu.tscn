@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d6dk6op8h577"]
+
+[ext_resource type="Script" uid="uid://c7n1kt7k82k18" path="res://Scripts/retry_button.gd" id="1_ipdme"]
+[ext_resource type="PackedScene" uid="uid://c00ta4ulq5c3x" path="res://Scenes/background.tscn" id="2_bsx7a"]
+
+[node name="DeathMenu" type="Node2D"]
+
+[node name="RetryButton" type="Button" parent="."]
+offset_left = 663.0
+offset_top = 498.0
+offset_right = 1258.0
+offset_bottom = 676.0
+theme_override_font_sizes/font_size = 100
+text = "Retry"
+script = ExtResource("1_ipdme")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 621.0
+offset_top = 276.0
+offset_right = 1302.0
+offset_bottom = 434.0
+theme_override_font_sizes/font_size = 100
+text = "You died"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" parent="." instance=ExtResource("2_bsx7a")]
+
+[connection signal="pressed" from="RetryButton" to="RetryButton" method="_on_pressed"]
